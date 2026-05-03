@@ -92,6 +92,38 @@
         <a href="{{ route('about') }}" class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}">About</a>
       </li>
     </ul>
+    
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item dropdown user-menu">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+          <i class="fas fa-user-circle fa-lg"></i>
+          <span class="ml-1 d-none d-md-inline">{{ Auth::user()->name }}</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right" style="box-shadow: none !important; border: none !important; width: 220px;">
+          <!-- User image -->
+          <li class="user-header bg-primary" style="box-shadow: none !important; height: 160px; padding: 25px 10px 10px 10px;">
+            <i class="fas fa-user-circle fa-4x mb-2"></i>
+            <p>
+              {{ Auth::user()->name }}
+            </p>
+          </li>
+          <!-- Menu Footer-->
+          <li class="user-footer" style="background-color: #f8f9fa; border-top: none;">
+            <span style="color: #6c757d; cursor: default;">Profile</span>
+            <form action="{{ route('logout') }}" method="POST" class="float-right">
+              @csrf
+              <button type="submit" style="background: none; border: none; padding: 0; color: #dc3545; cursor: pointer;">Sign out</button>
+            </form>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </nav>
   <!-- /.navbar -->
 
@@ -190,7 +222,7 @@
   <!-- Main Footer -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-inline">
-      POS System
+      Anything you want
     </div>
     <strong>Copyright &copy; {{ date('Y') }} <span class="text-primary">POS App</span>.</strong> All rights reserved.
   </footer>

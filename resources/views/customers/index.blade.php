@@ -16,6 +16,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone Number</th>
+                    <th>Address</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
@@ -27,6 +28,7 @@
                     <td>{{ $customer->name }}</td>
                     <td>{{ $customer->email }}</td>
                     <td>{{ $customer->phone_number }}</td>
+                    <td>{{ $customer->address }}</td>
                     <td>
                         @if($customer->status == '1')
                             <span class="badge bg-success">Active</span>

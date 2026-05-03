@@ -27,7 +27,7 @@
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->category->name ?? '-' }}</td>
                     <td>{{ $product->stock }}</td>
-                    <td>{{ $product->price }}</td>
+                    <td>Rp {{ number_format($product->price, 0, ',', '.') }}</td>
                     <td>
                         <a href="{{ route('products.edit', $product) }}" class="btn btn-sm btn-warning">Edit</a>
                         <form action="{{ route('products.destroy', $product) }}" method="POST" style="display:inline;">

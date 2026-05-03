@@ -30,9 +30,7 @@
                 <label>Quantity</label>
                 <input type="number" name="qty" class="form-control" value="1" min="1" required>
             </div>
-            <div class="alert alert-info">
-                <strong>Note:</strong> This basic form creates an order with a single product item.
-            </div>
+
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Process Order</button>
