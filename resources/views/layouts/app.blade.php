@@ -11,6 +11,46 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+  
+  <script>
+    (function() {
+      const state = localStorage.getItem('sidebar-state');
+      if (state === 'collapsed') {
+        document.documentElement.classList.add('sidebar-collapse');
+      }
+    })();
+  </script>
+  
+  <style>
+    /* Custom brand layout to ensure perfect centering and smooth animation */
+    .custom-brand-container {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      white-space: nowrap;
+      overflow: hidden;
+      height: calc(3.5rem + 0.5px); /* Match standard AdminLTE navbar height */
+      padding: 0 !important;
+      border-bottom: 1px solid #4b545c !important;
+    }
+    .custom-brand-img {
+      float: none !important;
+      margin: 0 !important;
+      flex-shrink: 0;
+    }
+    .custom-brand-text {
+      display: inline-block;
+      width: 75px; /* Exact width of POS App text */
+      margin-left: 0.5rem;
+      transition: width 0.3s ease-in-out, margin-left 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      overflow: hidden;
+    }
+    body.sidebar-collapse .custom-brand-text {
+      width: 0 !important;
+      margin-left: 0 !important;
+      opacity: 0 !important;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -27,11 +67,12 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand">
     <!-- Brand Logo -->
-    <a href="/" class="brand-link">
-      <span class="brand-text font-weight-light">POS App</span>
-    </a>
+    <div class="brand-link custom-brand-container" style="cursor: default; pointer-events: none;">
+      <img src="https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle custom-brand-img" style="opacity: .8;">
+      <span class="brand-text font-weight-bold custom-brand-text">POS App</span>
+    </div>
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -40,32 +81,50 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
             <a href="/" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>Dashboard</p>
+              <i class="nav-icon fas fa-home"></i>
+              <p>Home</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('categories.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-tags"></i>
-              <p>Categories</p>
+            <a href="{{ route('contact') }}" class="nav-link">
+              <i class="nav-icon fas fa-phone-alt"></i>
+              <p>Contact</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('products.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-box"></i>
-              <p>Products</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('customers.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>Customers</p>
+            <a href="{{ route('about') }}" class="nav-link">
+              <i class="nav-icon fas fa-info-circle"></i>
+              <p>About</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{ route('orders.index') }}" class="nav-link">
               <i class="nav-icon fas fa-shopping-cart"></i>
-              <p>Orders</p>
+              <p>Order</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('customers.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>Customer</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('categories.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-tags"></i>
+              <p>Category</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('products.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-box"></i>
+              <p>Product</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('reports.daily') }}" class="nav-link">
+              <i class="nav-icon fas fa-clipboard-list"></i>
+              <p>Daily Report</p>
             </a>
           </li>
         </ul>
@@ -116,5 +175,22 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+
+<script>
+  $(function() {
+    // If the pre-render script worked on html, move it to body for AdminLTE
+    if ($('html').hasClass('sidebar-collapse')) {
+      $('body').addClass('sidebar-collapse');
+      $('html').removeClass('sidebar-collapse');
+    }
+
+    $(document).on('collapsed.lte.pushmenu', function() {
+      localStorage.setItem('sidebar-state', 'collapsed');
+    });
+    $(document).on('shown.lte.pushmenu', function() {
+      localStorage.setItem('sidebar-state', 'expanded');
+    });
+  });
+</script>
 </body>
 </html>
