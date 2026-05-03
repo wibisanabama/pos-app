@@ -7,7 +7,7 @@
 <div class="card">
     <div class="card-body">
         <div class="text-center mb-5">
-            <i class="fas fa-cash-register fa-4x text-primary mb-3"></i>
+            <img src="https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="img-circle mb-3" style="width: 120px;">
             <h2>POS Application</h2>
             <p class="text-muted">Version 1.0.0</p>
         </div>

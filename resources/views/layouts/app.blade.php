@@ -63,6 +63,13 @@
     body.sidebar-collapse .nav-link[data-widget="pushmenu"] {
       color: rgba(0, 0, 0, 0.9) !important;
     }
+
+    /* Disable hover animation on small-box icons */
+    .small-box:hover .icon > i, 
+    .small-box:hover .icon > svg {
+      transform: scale(1) !important;
+      -webkit-transform: scale(1) !important;
+    }
   </style>
 </head>
 <body class="hold-transition sidebar-mini">

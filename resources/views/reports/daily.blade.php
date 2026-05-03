@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-lg-4 col-6">
+    <div class="col-lg-6 col-12">
         <div class="small-box bg-success">
             <div class="inner">
                 <h3>Rp {{ number_format($totalRevenue, 0, ',', '.') }}</h3>
@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-6">
+    <div class="col-lg-6 col-12">
         <div class="small-box bg-info">
             <div class="inner">
                 <h3>{{ $orders->count() }}</h3>
