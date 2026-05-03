@@ -50,6 +50,19 @@
       margin-left: 0 !important;
       opacity: 0 !important;
     }
+
+    /* Custom Active Menu Highlight */
+    .nav-pills .nav-link.active, 
+    .nav-pills .show > .nav-link {
+      background-color: rgba(255, 255, 255, 0.1) !important;
+      color: #fff !important;
+      box-shadow: none !important;
+    }
+
+    /* Darken hamburger icon when sidebar is collapsed */
+    body.sidebar-collapse .nav-link[data-widget="pushmenu"] {
+      color: rgba(0, 0, 0, 0.9) !important;
+    }
   </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -62,12 +75,21 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="/" class="nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ route('contact') }}" class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ route('about') }}" class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}">About</a>
+      </li>
     </ul>
   </nav>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand">
+  <aside class="main-sidebar sidebar-dark-primary sidebar-no-expand">
     <!-- Brand Logo -->
     <div class="brand-link custom-brand-container" style="cursor: default; pointer-events: none;">
       <img src="https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle custom-brand-img" style="opacity: .8;">
@@ -80,49 +102,49 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="/" class="nav-link">
+            <a href="/" class="nav-link {{ request()->is('/') ? 'active' : '' }}">
               <i class="nav-icon fas fa-home"></i>
               <p>Home</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('contact') }}" class="nav-link">
+            <a href="{{ route('contact') }}" class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">
               <i class="nav-icon fas fa-phone-alt"></i>
               <p>Contact</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('about') }}" class="nav-link">
+            <a href="{{ route('about') }}" class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}">
               <i class="nav-icon fas fa-info-circle"></i>
               <p>About</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('orders.index') }}" class="nav-link">
+            <a href="{{ route('orders.index') }}" class="nav-link {{ request()->routeIs('orders.*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-shopping-cart"></i>
               <p>Order</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('customers.index') }}" class="nav-link">
+            <a href="{{ route('customers.index') }}" class="nav-link {{ request()->routeIs('customers.*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>Customer</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('categories.index') }}" class="nav-link">
+            <a href="{{ route('categories.index') }}" class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tags"></i>
               <p>Category</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('products.index') }}" class="nav-link">
+            <a href="{{ route('products.index') }}" class="nav-link {{ request()->routeIs('products.*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-box"></i>
               <p>Product</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('reports.daily') }}" class="nav-link">
+            <a href="{{ route('reports.daily') }}" class="nav-link {{ request()->routeIs('reports.daily') ? 'active' : '' }}">
               <i class="nav-icon fas fa-clipboard-list"></i>
               <p>Daily Report</p>
             </a>
@@ -163,7 +185,7 @@
     <div class="float-right d-none d-sm-inline">
       POS System
     </div>
-    <strong>Copyright &copy; {{ date('Y') }} <a href="#">POS App</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; {{ date('Y') }} <span class="text-primary">POS App</span>.</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->
